@@ -1,0 +1,243 @@
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.[Product]
+	(
+	Id int NOT NULL IDENTITY (1, 1),
+	Code nvarchar(10) NOT NULL,
+	Description nvarchar(50) NULL,
+	BuyPrice float(53) NOT NULL,
+	UnitPrice float(53) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Product ADD CONSTRAINT
+	PK_Product PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+
+CREATE TABLE dbo.[User]
+	(
+	Id int NOT NULL IDENTITY (1, 1),
+	Username nvarchar(50) NOT NULL,
+	Password nvarchar(50) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.[User] ADD CONSTRAINT
+	PK_User PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+CREATE TABLE dbo.[Order]
+	(
+	Id int NOT NULL IDENTITY (1, 1),
+	Date datetime NOT NULL,
+	CreatedBy int NOT NULL,
+	Total float(53) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.[Order] ADD CONSTRAINT
+	PK_Order PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.[Order] ADD CONSTRAINT
+	FK_Order_User FOREIGN KEY
+	(
+	CreatedBy
+	) REFERENCES dbo.[User]
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+GO
+
+CREATE TABLE [dbo].[Role](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](10) NOT NULL,
+	[Description] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]	
+
+GO
+CREATE TABLE dbo.PurchaseStatus
+	(
+	Id int NOT NULL IDENTITY (1, 1),
+	Code nvarchar(10) NOT NULL,
+	Description nvarchar(50) NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.PurchaseStatus ADD CONSTRAINT
+	PK_PurchaseStatus PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+GO
+CREATE TABLE dbo.OrderProduct
+	(
+	OrderId int NOT NULL IDENTITY (1, 1),
+	ProductId int NOT NULL,
+	Quantity int NOT NULL,
+	ProductsTotal float(53) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	PK_OrderProduct PRIMARY KEY CLUSTERED 
+	(
+	OrderId,
+	ProductId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_Order_Product_OrderId FOREIGN KEY
+	(
+	OrderId
+	) REFERENCES dbo.[Order]
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.OrderProduct ADD CONSTRAINT
+	FK_Order_Product_ProductId FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+
+CREATE TABLE dbo.Inventory
+	(
+	ProductId int NOT NULL,
+	Quantity int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Inventory ADD CONSTRAINT
+	PK_Inventory PRIMARY KEY CLUSTERED 
+	(
+	ProductId
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Inventory ADD CONSTRAINT
+	FK_Inventory_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+
+CREATE TABLE dbo.PriceChange
+	(
+	Id int NOT NULL IDENTITY (1, 1),
+	ProductId int NOT NULL,
+	ChangeDate datetime NOT NULL,
+	PreviousPrice float(53) NOT NULL,
+	CurrentPrice float(53) NOT NULL,
+	ChangedBy int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.PriceChange ADD CONSTRAINT
+	PK_PriceChange PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.PriceChange ADD CONSTRAINT
+	FK_PriceChange_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.PriceChange ADD CONSTRAINT
+	FK_PriceChange_User FOREIGN KEY
+	(
+	ChangedBy
+	) REFERENCES dbo.[User]
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+GO
+CREATE TABLE dbo.PurchaseProduct
+	(
+	Id int NOT NULL IDENTITY (1, 1),
+	ProductId int NOT NULL,
+	PurchaseDate datetime NOT NULL,
+	OrderedBy int NOT NULL,
+	Quantity int NOT NULL,
+	BuyUnitPrice float(53) NOT NULL,
+	TotalPrice float(53) NOT NULL,
+	Status int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.PurchaseProduct ADD CONSTRAINT
+	PK_PurchaseProduct PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.PurchaseProduct ADD CONSTRAINT
+	FK_Purchase_Product FOREIGN KEY
+	(
+	ProductId
+	) REFERENCES dbo.Product
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.PurchaseProduct ADD CONSTRAINT
+	FK_Purchase_User FOREIGN KEY
+	(
+	OrderedBy
+	) REFERENCES dbo.[User]
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+ALTER TABLE dbo.PurchaseProduct ADD CONSTRAINT
+	FK_Purchase_Status FOREIGN KEY
+	(
+	Status
+	) REFERENCES dbo.PurchaseStatus
+	(
+	Id
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  NO ACTION 
+	
+GO
+
+
+COMMIT 
