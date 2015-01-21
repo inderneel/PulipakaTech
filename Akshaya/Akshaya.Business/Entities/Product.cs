@@ -13,5 +13,6 @@ namespace Akshaya.Business.Entities
         public string Description { get; set; }
         public float BuyingPrice { get; set; }
         public float UnitPrice { get; set; }
+        public int CurrentlyAvailable { get; set; }
     }
 }

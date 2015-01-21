@@ -48,8 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Entities\Contact.cs" />
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderProduct.cs" />
+    <Compile Include="Entities\PriceChange.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
