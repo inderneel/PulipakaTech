@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Akshaya.Business.Entities
+namespace Akshaya.Data.Entities
 {
     public class PriceChange
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public DateTime ChangeDate { get; set; }
         public float PreviousPrice { get; set; }
         public float CurrentPrice { get; set; }

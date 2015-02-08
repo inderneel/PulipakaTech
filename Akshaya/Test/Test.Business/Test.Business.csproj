@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Test.Business</RootNamespace>
     <AssemblyName>Test.Business</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,9 +66,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Akshaya.Business\Akshaya.Business.csproj">
-      <Project>{b4f20ba3-f8e7-4877-b0b2-4277ef90114b}</Project>
+    <ProjectReference Include="..\..\Business\Akshaya.Business\Akshaya.Business.csproj">
+      <Project>{8f58e935-8af9-4d0d-9f24-dfc13539847d}</Project>
       <Name>Akshaya.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\Akshaya.Data\Akshaya.Data.csproj">
+      <Project>{ee15da5d-0331-4790-bbbf-22e9872656eb}</Project>
+      <Name>Akshaya.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

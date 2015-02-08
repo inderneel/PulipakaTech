@@ -1,10 +1,17 @@
-﻿namespace Akshaya.Business.Entities
+﻿namespace Akshaya.Data.Entities
 {
-    public class Contact
+    public class Contact : IContact
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string ContactType { get; set; }
         public string ContactInfo { get; set; }
+    }
+
+    public interface IContact : IBusinessEntity
+    {
+        long Id { get; set; }
+        string ContactType { get; set; }
+        string ContactInfo { get; set; }
     }
 
     public static class ContactTypes

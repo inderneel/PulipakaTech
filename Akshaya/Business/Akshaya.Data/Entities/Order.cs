@@ -6,22 +6,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Akshaya.Business.Entities
+namespace Akshaya.Data.Entities
 {
-    public class Order
+    public class Order : IOrder
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public DateTime Date { get; set; }
         public float Total { get; set; }
 
         [ForeignKey("CreatedBy")]
-        public int CreatedByUserId { get; set; }
+        public long CreatedByUserId { get; set; }
         public User CreatedBy { get; set; }
 
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public long CustomerId { get; set; }
         public Customer Customer { get; set; }
 
         public ICollection<OrderProduct> Products { get; set; } 
+    }
+
+    public interface IOrder : IBusinessEntity
+    {
+        long Id { get; set; }
+        DateTime Date { get; set; }
+        float Total { get; set; }
+        
+        User CreatedBy { get; set; }
+        Customer Customer { get; set; }
+        
+        ICollection<OrderProduct> Products { get; set; } 
     }
 }
