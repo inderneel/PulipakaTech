@@ -1,0 +1,33 @@
+﻿@model Akshaya.AppEntities.Entities.ProductModel
+
+<div ng-controller="products">
+    <div class="productsDiv" ng-show="products != null && products.length > 0">
+        <div ng-repeat="product in products">
+            <br /><span>Name: {{product.Name}}</span>
+            <br /><span>Description: {{product.Description}}</span>
+            <br /><span>Price: ${{product.UnitPrice}}</span>
+            <br /><span>Buy Price: ${{product.BuyingPrice}}</span>
+            <br />
+            <span>
+                Available:
+                <span ng-show="product.CurrentlyAvailable > 0">Yes</span>
+                <span ng-hide="product.CurrentlyAvailable > 0">No</span>
+            </span>
+            <br /><span style="display: none" name="id">{{product.id}}</span>
+        </div>
+    </div>
+    <br/>
+    <input id="btnAddProduct" type="button" value="Add Product" ng-show="showAddProductDiv" ng-click="showAddProduct()" />
+    <br />
+    <div id="divAddProduct" ng-hide="showAddProductDiv" class="addProductDiv">
+        <h3>Add Product</h3>
+        <div class="productsLabelDiv">Name: </div><input type="text" ng-model="newProduct.Name" /><br />
+        <div class="productsLabelDiv">Description: </div><input type="text" ng-model="newProduct.Description" /><br />
+        <div class="productsLabelDiv">Unit Price: </div><input type="text" ng-model="newProduct.UnitPrice" /><br />
+        <div class="productsLabelDiv">Buy Price:</div> <input type="text" ng-model="newProduct.BuyingPrice" /><br />
+        <div class="productsLabelDiv">Available Units: </div> <input type="text" ng-model="newProduct.CurrentlyAvailable" /><br />
+        <br/>
+        <input id="btnSaveProduct" type="button" value="Save" ng-click="saveNewProduct()" />
+        <input id="btnCancelSave" type="button" value="Cancel" ng-click="cancelSaveProduct()" />
+    </div>
+</div>

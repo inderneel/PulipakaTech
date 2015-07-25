@@ -1,0 +1,20 @@
+﻿.productsDiv {
+    overflow-y: scroll;
+    min-height: 0px;
+    max-height: 200px;
+}
+
+.addProductDiv input[type=text] {
+    /*padding: 0px;*/
+    margin: 0px;
+    vertical-align: central;
+    vert-align: middle;
+    width: 180px;
+}
+
+.productsLabelDiv {
+    float: left;
+    clear: left;
+    width: 120px;
+    height: 10px;
+}

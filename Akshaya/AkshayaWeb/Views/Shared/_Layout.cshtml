@@ -7,8 +7,12 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/controller/products.css" rel="stylesheet" />
+        <script src="~/Scripts/angular.js"></script>
+        <script src="~/Scripts/controller/products.js"></script>
+        <script src="~/Scripts/app.js"></script>
     </head>
-    <body>
+    <body ng-app="root">
         <header>
             <div class="content-wrapper title-bar">
                 <div class="float-left">
@@ -21,7 +25,7 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Collections", "Collections", "Home")</li>
+                            <li>@Html.ActionLink("Collections", "Products", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>

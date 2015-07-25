@@ -14,6 +14,11 @@ namespace AkshayaWeb.Controllers
             return View();
         }
 
+        public ActionResult Products()
+        {
+            return View("Products");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

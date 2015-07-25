@@ -14,6 +14,7 @@ namespace Akshaya.Business
         {
             /*Database.SetInitializer(new CreateDatabaseIfNotExists<Context>());*/
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+            /*Database.SetInitializer(new DropCreateDatabaseAlways<Context>());*/
 
             ConfigureEntities();
         }
@@ -22,14 +23,13 @@ namespace Akshaya.Business
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<PriceChange> PriceChanges { get; set; }
+        public DbSet<Picture> Pictures { get; set; }
 
-/*        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>().Property(order => order.CreatedByUserId)
                 .IsRequired();
-
-
-        }*/
+        }
 
         private void ConfigureEntities()
         {
