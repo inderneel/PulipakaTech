@@ -1,7 +1,10 @@
-﻿.productsDiv {
+﻿.productsMainDiv {
+    min-height: 400px;
+}
+.productsDiv {
     overflow-y: scroll;
     min-height: 0px;
-    max-height: 200px;
+    max-height: 300px;
 }
 
 .addProductDiv input[type=text] {
@@ -17,4 +20,13 @@
     clear: left;
     width: 120px;
     height: 10px;
+}
+.left {
+    float: left;
+}
+.clearLeft {
+    clear: left;    
+}
+.right {
+    float: right;
 }

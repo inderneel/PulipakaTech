@@ -35,9 +35,16 @@ namespace AkshayaWeb.Controllers
         }
 
         [HttpPost]
-        public void AddProduct(ProductModel product)
+        public void SaveProduct(ProductModel product)
         {
-            _productsFacade.Add(product);
+            if (product.Id == 0)
+            {
+                _productsFacade.Add(product);
+            }
+            else
+            {
+                _productsFacade.Update(product);
+            }
         }
     }
 }
