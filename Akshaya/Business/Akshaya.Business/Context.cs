@@ -24,6 +24,7 @@ namespace Akshaya.Business
         public DbSet<Order> Orders { get; set; }
         public DbSet<PriceChange> PriceChanges { get; set; }
         public DbSet<Picture> Pictures { get; set; }
+        public DbSet<PictureCache> PicturesInCache { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

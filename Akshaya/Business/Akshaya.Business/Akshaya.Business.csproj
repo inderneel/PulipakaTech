@@ -51,6 +51,8 @@
     <Compile Include="Context.cs" />
     <Compile Include="Facade\FacadeBase.cs" />
     <Compile Include="Facade\IFacade.cs" />
+    <Compile Include="Facade\PicturesCacheFacade.cs" />
+    <Compile Include="Facade\PicturesFacade.cs" />
     <Compile Include="Facade\ProductsFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

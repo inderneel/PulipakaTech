@@ -48,10 +48,10 @@ namespace Akshaya.Business.Facade
 
             if(newProduct != null)
             {
-                if(products.Any(p => p.Code == newProduct.Code))
+                /*if(products.Any(p => p.Code == newProduct.Code))
                 {
                     return false;
-                }
+                }*/
 
                 var newEntity = new Product
                 {

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ModelBase.cs" />
+    <Compile Include="Entities\PictureCacheModel.cs" />
     <Compile Include="Entities\PictureModel.cs" />
     <Compile Include="Entities\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

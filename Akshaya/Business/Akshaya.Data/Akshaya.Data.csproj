@@ -53,6 +53,7 @@
     <Compile Include="Entities\IBusinessEntity.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderProduct.cs" />
+    <Compile Include="Entities\PictureCache.cs" />
     <Compile Include="Entities\Picture.cs" />
     <Compile Include="Entities\PriceChange.cs" />
     <Compile Include="Entities\Product.cs" />

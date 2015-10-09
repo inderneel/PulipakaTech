@@ -1,7 +1,6 @@
-﻿@model Akshaya.AppEntities.Entities.ProductModel
-
+﻿
 <div ng-controller="products" class="productsMainDiv">
-    <div class="productsDiv" ng-show="showAddProductDiv">
+    <div class="productsDiv" ng-show="showProductsDiv">
         <div ng-repeat="product in products">
             <div class="left clearLeft">
                 <br /><span>Name: {{product.Name}}</span>
@@ -21,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div id="divAddProduct" ng-hide="showAddProductDiv" class="addProductDiv">
+    <div id="divAddProduct" ng-show="showAddProductDiv" class="addProductDiv">
         <h3>{{SaveProductText}}</h3>
         <br />
         <div class="productsLabelDiv">Name: </div><input type="text" ng-model="newProduct.Name" /><br />
@@ -29,13 +28,31 @@
         <div class="productsLabelDiv">Unit Price: </div><input type="text" ng-model="newProduct.UnitPrice" /><br />
         <div class="productsLabelDiv">Buy Price:</div> <input type="text" ng-model="newProduct.BuyingPrice" /><br />
         <div class="productsLabelDiv">Available Units: </div> <input type="text" ng-model="newProduct.CurrentlyAvailable" /><br />
-        <div class="productsLabelDiv">Image: </div> <input id="btnSaveImage" type="file" value="Save" />
+        <div class="productsLabelDiv">Image: </div> {{newProduct.Images == null ? "none" : newProduct.Images.length }}
+        <br/>
+        <input id="btnAddImages" type="button" value="Add Images" ng-click="addProductImages()" 
+                                                        ng-show="showAddImageButton" />
         <br />
         <input id="btnSaveProduct" type="button" value="Save" ng-click="saveNewProduct()" />
         <input id="btnCancelSave" type="button" value="Cancel" ng-click="cancelSaveProduct()" />
     </div>
     <div>
-        <br />
-        <input id="btnAddProduct" type="button" value="Add Product" ng-show="showAddProductDiv" ng-click="showAddProduct()" />
+        <br/>
+        <input id="btnAddProduct" type="button" value="Add Product" ng-show="showProductsDiv" ng-click="showAddProduct()"/>
+    </div>
+    <div ng-show="showAddImageDiv">
+        <form action="/api/Products/SaveImage" method="POST" ng-controller="products" id="frmSaveImage" enctype="multipart/form-data">
+            @*ng-submit="uploadImage()" *@
+            <div class="productsLabelDiv">Image: </div>
+            <input id="btnSaveImage" type="file" value="Save" name="PictureData" onchange=" angular.element(this).scope().setFile(this.files) "/>
+            @*ng-model="newImage.PictureData"*@
+            <br />
+            <div class="productsLabelDiv">Name: </div><input type="text" ng-model="newImage.Name" /><br />
+            <div class="productsLabelDiv">Description: </div><input type="text" ng-model="newImage.Description" /><br />
+
+            <br />
+            <input id="btnCancelImages" type="button" value="Cancel" ng-click="cancelAddImages()" />
+            <input id="btnUploadImage" type="button" value="Upload" ng-click="uploadImage()" />
+        </form>
     </div>
 </div>
