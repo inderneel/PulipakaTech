@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Http;
 using Akshaya.AppEntities.Entities;
 using Akshaya.Business.Facade;
+using Microsoft.Win32.SafeHandles;
 
 namespace AkshayaWeb.Controllers
 {
@@ -71,7 +72,6 @@ namespace AkshayaWeb.Controllers
 
         public async Task<HttpResponseMessage> SaveImage()
         {
-            /*
                 if (Request.Content.IsMimeMultipartContent())
                 {
                     var streamProvider = new MultipartMemoryStreamProvider();
@@ -80,13 +80,15 @@ namespace AkshayaWeb.Controllers
 
                     foreach (var file in streamProvider.Contents)
                     {
-                        var filename = file.Headers.ContentDisposition.FileName.Trim('\"');
+                        var fileName = Guid.NewGuid().ToString();
+
+                        //var filename = file.Headers.ContentDisposition.FileName.Trim('\"');
                         var buffer = await file.ReadAsByteArrayAsync();
 
-                        pictureCacheModel.Name = filename;
+                        pictureCacheModel.Name = fileName;
                         _picturesCacheFacade.Add(pictureCacheModel);
 
-                        Stream fileStream = File.Create("c:/uploads/" + filename);
+                        Stream fileStream = File.Create("c:/uploads/" + fileName);
                         fileStream.Write(buffer,0,buffer.Length);
                         fileStream.Close();
                     }
@@ -99,12 +101,13 @@ namespace AkshayaWeb.Controllers
                 {
                     throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotAcceptable,
                         "This request is not properly formatted"));
-                }*/
+                }
 
+
+            /*var fileName = Guid.NewGuid().ToString();
             var requestStream = await Request.Content.ReadAsStreamAsync();
 
-            /*var requestStream = requestStreamTask.Result;*/
-            var fileName = Guid.NewGuid().ToString();
+            //var requestStream = requestStreamTask.Result;
             var pictureCacheModel = new PictureCacheModel();
 
             try
@@ -116,7 +119,7 @@ namespace AkshayaWeb.Controllers
                 pictureCacheModel.Name = fileName;
                 _picturesCacheFacade.Add(pictureCacheModel);
 
-                /*return pictureCacheModel;*/
+                /*return pictureCacheModel;#1#
                 var response = Request.CreateResponse(HttpStatusCode.OK, pictureCacheModel);
 
                 return response;
@@ -126,7 +129,7 @@ namespace AkshayaWeb.Controllers
                 var httpResponseException = new  HttpResponseException(HttpStatusCode.InternalServerError);
 
                 throw httpResponseException;
-            }
+            }*/
             //_picturesFacade.Add(picture);
         }
     }

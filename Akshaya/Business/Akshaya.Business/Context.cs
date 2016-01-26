@@ -25,7 +25,7 @@ namespace Akshaya.Business
         public DbSet<PriceChange> PriceChanges { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<PictureCache> PicturesInCache { get; set; }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>().Property(order => order.CreatedByUserId)

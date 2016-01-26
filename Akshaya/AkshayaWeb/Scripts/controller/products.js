@@ -47,9 +47,9 @@
 
                 $http.post(uploadImageUri,fd, {
                         /*withCredentials: true,*/
-                        headers: { 'Content-Type': undefined },
-                        /*data: fd,*/
-                        transformRequest: angular.identity
+                    headers: { 'Content-Type': undefined },
+                    transformRequest: angular.identity,
+                        data: fd,
                         /*contentType: false,*/
                         /*processData: false*/
                     }).success(function(data, status, headers, config) {
